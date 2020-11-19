@@ -19,7 +19,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* Components */
@@ -28,6 +27,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     SigninComponent,
     SignupComponent,
     AdminComponent,
-    NavbarComponent
+    NavbarComponent,
+    ContactComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -45,7 +46,6 @@ import { AdminComponent } from './pages/admin/admin.component';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatGridListModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
