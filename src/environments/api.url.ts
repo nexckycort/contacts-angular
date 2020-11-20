@@ -8,11 +8,9 @@ const url: string = `${baseUrl}/v1`;
 export const api = {
   signup: `${url}/signup`,
   signin: `${url}/signin`,
-  session: `${url}/session`,
-  categories: `${url}/categories`,
-  groups: {
+  contacts: {
     create: `${url}/admin/groups`,
-    findAll: `${url}/admin/groups`,
+    findAll: `${url}/admin/contacts`,
     findOne: (id: string) => `${url}/admin/groups/${id}`,
     delete: (id: string) => `${url}/admin/groups/${id}`,
     update: (id: string) => `${url}/admin/groups/${id}`

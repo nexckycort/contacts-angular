@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactService } from 'src/app/services/contact/contact.service';
+import { IContact } from 'src/app/types/admin';
 
 @Component({
   selector: 'app-contact',
@@ -6,11 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  contacts = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  contacts: IContact[] = [];
 
-  constructor() { }
+  constructor(
+    private contactService: ContactService
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.getContacts()
   }
 
+  async getContacts() {
+    const result = await this.contactService.findAll()
+    this.contacts = result.data;
+  }
+
+  deleteContact(id: string) {
+    alert(id);
+  }
 }
