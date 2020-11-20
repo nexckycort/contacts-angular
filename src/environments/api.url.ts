@@ -1,4 +1,4 @@
-const heroku = 'https://workshops-api.herokuapp.com'
+const heroku = 'https://api-contacts1.herokuapp.com'
 const local = 'http://localhost:9000'
 
 export const baseUrl: string = heroku;

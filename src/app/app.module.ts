@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
 /* Routing */
@@ -50,6 +51,7 @@ import { ContactComponent } from './components/contact/contact.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule
   ],
