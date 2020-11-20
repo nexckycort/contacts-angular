@@ -5,20 +5,20 @@
       <mat-card-title>Sign up</mat-card-title>
     </mat-card-header>
 
-    <form class="example-form">
+    <form class="example-form" [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
       <mat-form-field class="example-full-width">
         <mat-label>Name</mat-label>
-        <input type="text" matInput [formControl]="nameFormControl" placeholder="Ex. Nestor">
+        <input type="text" matInput formControlName="name" (ngModelChange)="formValid()" placeholder="Ex. Nestor">
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
-        <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. nestor@example.com">
+        <input type="email" matInput formControlName="email" (ngModelChange)="formValid()" placeholder="Ex. nestor@example.com">
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'">
+        <input matInput formControlName="password" (ngModelChange)="formValid()" [type]="hide ? 'password' : 'text'">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -27,15 +27,18 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Confirm your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'">
+        <input matInput formControlName="confirmPassword" (ngModelChange)="formValid()" [type]="hide ? 'password' : 'text'">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
 
-      <button mat-flat-button color="primary" class="btn-block">Sign up</button>
+      <button mat-flat-button color="primary" [disabled]="btnSignup" class="btn-block">Sign up</button>
     </form>
+
+    <a routerLink="/signin">Sign in</a>
+
   </mat-card>
 
 </div>
