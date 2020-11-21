@@ -24,4 +24,48 @@ export class ContactService {
         )
     })
   }
+
+  findOne(id: string): Promise<any> {
+    return new Promise((resolve, rejects) => {
+      this.http.get(api.contacts.findOne(id), headers())
+        .subscribe(result => {
+          resolve(result)
+        },
+          err => invalidToken(err, this.router)
+        )
+    })
+  }
+
+  create(contact: any): Promise<any> {
+    return new Promise((resolve, rejects) => {
+      this.http.post(api.contacts.create, contact, headers())
+        .subscribe(result => {
+          resolve(result)
+        },
+          err => invalidToken(err, this.router)
+        )
+    })
+  }
+
+  update(id: string, contact: any): Promise<any> {
+    return new Promise((resolve, rejects) => {
+      this.http.put(api.contacts.update(id), contact, headers())
+        .subscribe(result => {
+          resolve(result)
+        },
+          err => invalidToken(err, this.router)
+        )
+    })
+  }
+
+  delete(id: string): Promise<any> {
+    return new Promise((resolve, rejects) => {
+      this.http.delete(api.contacts.delete(id), headers())
+        .subscribe(result => {
+          resolve(result)
+        },
+          err => invalidToken(err, this.router)
+        )
+    })
+  }
 }

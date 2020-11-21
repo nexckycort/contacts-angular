@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* Components */
@@ -29,6 +30,7 @@ import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { DialogContactComponent } from './components/dialog-contact/dialog-contact.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ContactComponent } from './components/contact/contact.component';
     SignupComponent,
     AdminComponent,
     NavbarComponent,
-    ContactComponent
+    ContactComponent,
+    DialogContactComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -47,6 +50,7 @@ import { ContactComponent } from './components/contact/contact.component';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatDialogModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

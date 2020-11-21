@@ -9,10 +9,10 @@ export const api = {
   signup: `${url}/signup`,
   signin: `${url}/signin`,
   contacts: {
-    create: `${url}/admin/groups`,
+    create: `${url}/admin/contacts`,
     findAll: `${url}/admin/contacts`,
-    findOne: (id: string) => `${url}/admin/groups/${id}`,
-    delete: (id: string) => `${url}/admin/groups/${id}`,
-    update: (id: string) => `${url}/admin/groups/${id}`
+    findOne: (id: string) => `${url}/admin/contacts/${id}`,
+    delete: (id: string) => `${url}/admin/contacts/${id}`,
+    update: (id: string) => `${url}/admin/contacts/${id}`
   }
 }

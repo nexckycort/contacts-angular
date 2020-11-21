@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+
+<mat-dialog-content>
+
+  <form class="example-form" [formGroup]="contactForm">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput (ngModelChange)="formValid()" formControlName="name" placeholder="Ex. Nestor">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput (ngModelChange)="formValid()" formControlName="email"
+        placeholder="Ex. pat@example.com">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Cell Phone</mat-label>
+      <input type="number" maxlength="10" matInput (ngModelChange)="formValid()" formControlName="cellphone"
+        placeholder="Ex. 3023348486">
+    </mat-form-field>
+
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <button class="mat-raised-button mat-primary" [disabled]="btnSave" (click)="save()">Save</button>
+</mat-dialog-actions>
