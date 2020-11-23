@@ -14,15 +14,8 @@ export class ContactService {
     private router: Router
   ) { }
 
-  findAll(): Promise<any> {
-    return new Promise((resolve, _rejects) => {
-      this.http.get(api.contacts.findAll, headers())
-        .subscribe(result => {
-          resolve(result)
-        },
-          err => invalidToken(err, this.router)
-        )
-    })
+  findAll() {
+    return this.http.get(api.contacts.findAll, headers())
   }
 
   findOne(id: string): Promise<any> {
@@ -58,14 +51,7 @@ export class ContactService {
     })
   }
 
-  delete(id: string): Promise<any> {
-    return new Promise((resolve, rejects) => {
-      this.http.delete(api.contacts.delete(id), headers())
-        .subscribe(result => {
-          resolve(result)
-        },
-          err => invalidToken(err, this.router)
-        )
-    })
+  delete(id: string) {
+    return this.http.delete(api.contacts.delete(id), headers())
   }
 }

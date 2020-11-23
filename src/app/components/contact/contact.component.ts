@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { ContactService } from 'src/app/services/contact/contact.service';
 import { IContact } from 'src/app/types/admin';
 import { DialogContactComponent } from '../dialog-contact/dialog-contact.component';
@@ -11,6 +12,7 @@ import { DialogContactComponent } from '../dialog-contact/dialog-contact.compone
 })
 export class ContactComponent implements OnInit {
   contacts: IContact[] = [];
+  contactsHttp!: Subscription;
 
   constructor(
     private contactService: ContactService,
@@ -31,24 +33,33 @@ export class ContactComponent implements OnInit {
 
     this.dialog.open(DialogContactComponent, dialogConfig)
       .beforeClosed()
-      .subscribe(async () => {
-        await this.getContacts()
+      .subscribe(() => {
+        this.getContacts()
       })
   }
 
-  async ngOnInit() {
-    await this.getContacts()
+  ngOnInit() {
+    this.getContacts()
   }
 
-  async getContacts() {
-    const result = await this.contactService.findAll()
-    this.contacts = result.data;
+  getContacts() {
+    this.contactsHttp = this.contactService.findAll()
+      .subscribe((result: any) => {
+        this.contacts = result.data;
+      })
   }
 
-  async deleteContact(id: string) {
+  ngOnDestroy() {
+    this.contactsHttp.unsubscribe();
+  }
+
+  deleteContact(id: string) {
     const _delete = confirm('You want to delete the contact?')
     if (!_delete) return;
-    await this.contactService.delete(id)
-    await this.getContacts()
+    this.contactsHttp = this.contactService.delete(id)
+      .subscribe((result: any) => {
+        console.log(result)
+        this.getContacts()
+      })
   }
 }
