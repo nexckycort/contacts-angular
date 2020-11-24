@@ -4,3 +4,9 @@ export interface IContact {
   email: string;
   cellphone: string;
 }
+
+export interface IResponseHttp {
+  statusCode: string;
+  message: string;
+  data?: any;
+}

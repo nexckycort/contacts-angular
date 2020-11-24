@@ -1,8 +1,11 @@
+import { HttpEvent, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { invalidToken } from 'src/app/helpers/invalid.token';
 import { ContactService } from 'src/app/services/contact/contact.service';
-import { IContact } from 'src/app/types/admin';
+import { IContact, IResponseHttp } from 'src/app/types/admin';
 import { DialogContactComponent } from '../dialog-contact/dialog-contact.component';
 
 @Component({
@@ -16,7 +19,8 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private contactService: ContactService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) { }
 
   openDialog(action: boolean, title: string, id: string = '0') {
@@ -44,9 +48,10 @@ export class ContactComponent implements OnInit {
 
   getContacts() {
     this.contactsHttp = this.contactService.findAll()
-      .subscribe((result: any) => {
-        this.contacts = result.data;
-      })
+      .subscribe(
+        (result: any) => this.contacts = result.data,
+        (err: any) => invalidToken(err, this.router)
+      );
   }
 
   ngOnDestroy() {
